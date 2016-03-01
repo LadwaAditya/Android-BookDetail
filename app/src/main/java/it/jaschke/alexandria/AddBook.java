@@ -127,11 +127,16 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     private void startBookService(String code) {
-        Intent bookIntent = new Intent(getActivity(), BookService.class);
-        bookIntent.putExtra(BookService.EAN, code);
-        bookIntent.setAction(BookService.FETCH_BOOK);
-        getActivity().startService(bookIntent);
-        AddBook.this.restartLoader();
+        if (new CheckInternet(getActivity()).isConnected()) {
+
+            Intent bookIntent = new Intent(getActivity(), BookService.class);
+            bookIntent.putExtra(BookService.EAN, code);
+            bookIntent.setAction(BookService.FETCH_BOOK);
+            getActivity().startService(bookIntent);
+            AddBook.this.restartLoader();
+        } else {
+            Toast.makeText(getActivity(), "No Internet connection", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void restartLoader() {
@@ -214,7 +219,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             if (resultCode == Activity.RESULT_OK) {
                 String code = data.getStringExtra(Utility.EXTRA_CODE);
                 Toast.makeText(getContext(), code, Toast.LENGTH_SHORT).show();
-                startBookService(code);
+                ean.setText(code);
 
             }
         }
