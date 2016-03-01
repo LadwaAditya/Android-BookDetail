@@ -206,7 +206,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                String code = data.getStringExtra("Code");
+                String code = data.getStringExtra(Utility.EXTRA_CODE);
                 Toast.makeText(getContext(), code, Toast.LENGTH_SHORT).show();
             }
         }

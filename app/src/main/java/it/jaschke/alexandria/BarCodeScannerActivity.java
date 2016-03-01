@@ -90,7 +90,7 @@ public class BarCodeScannerActivity extends AppCompatActivity {
 
                     Log.d("Barcode", barcodes.valueAt(0).displayValue);
                     Intent returnintent = new Intent();
-                    returnintent.putExtra("Code", barcodes.valueAt(0).displayValue);
+                    returnintent.putExtra(Utility.EXTRA_CODE, barcodes.valueAt(0).displayValue);
                     setResult(Activity.RESULT_OK, returnintent);
                     finish();
 
