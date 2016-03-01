@@ -1,6 +1,7 @@
 package it.jaschke.alexandria;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -205,14 +206,28 @@ public class NavigationDrawerFragment extends Fragment {
         }
     }
 
+
+
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        try {
+//            mCallbacks = (NavigationDrawerCallbacks) activity;
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
+//        }
+//    }
+
+    //Removed depricated method and added supported method for latest SDK
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mCallbacks = (NavigationDrawerCallbacks) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
-        }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity)
+            try {
+                mCallbacks = (NavigationDrawerCallbacks) context;
+            } catch (ClassCastException e) {
+                throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
+            }
     }
 
     @Override
