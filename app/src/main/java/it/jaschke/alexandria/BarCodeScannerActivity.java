@@ -33,7 +33,9 @@ public class BarCodeScannerActivity extends AppCompatActivity {
 
         final SurfaceView camara = (SurfaceView) findViewById(R.id.camera_view);
 
-        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this).build();
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
+                .build();
+
 
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(680, 480)
