@@ -98,7 +98,7 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
             return;
         }
 
-
+        try {
             bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
             ((TextView) rootView.findViewById(R.id.fullBookTitle)).setText(bookTitle);
 
@@ -121,7 +121,9 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
 
             String categories = data.getString(data.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
             ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
-
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 //
 
     }
